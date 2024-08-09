@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\AdminLoginController;
@@ -47,5 +48,19 @@ Route::group(['prefix' => 'admin'], function () {
 
         //temp-images.create
         Route::post('/upload-temp-image', [TempImagesController::class, 'create'])->name('temp-images.create');
+        //brands routes 
+        Route::get('/brand', [BrandController::class, 'index'])->name('brands.index');
+
+        //create 
+        Route::get('/brand/create',[BrandController::class,'create'])->name('brands.create');
+        Route::post('/brand', [BrandController::class, 'store'])->name('brands.store');
+
+        //edit brand
+        Route::get('/brand/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
+        Route::put('/brand/{brand}', [BrandController::class, 'update'])->name('brands.update');
+
+        //delete brand
+        Route::delete('/brand/{brand}', [BrandController::class, 'destroy'])->name('brands.delete');
+
     });
 });
